@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Main Menu</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      padding: 2rem 2rem 1rem 2rem;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .menu {
+      display: flex;
+      gap: 4rem;
+      justify-content: center;
+    }
+    .card {
+      background-color: #1f1f1f;
+      border-radius: 12px;
+      padding: 1.5rem;
+      width: 260px;
+      box-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
+      border-left: 4px solid #00f7ff;
+      border-right: 4px solid #00f7ff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 16px rgba(0, 255, 255, 0.4);
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #00f7ff;
+      font-weight: bold;
+    }
+    .start-button {
+      background-color: #00f7ff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 0.4rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .start-button:hover {
+      background-color: #00d6d6;
+      box-shadow: 0 0 10px #00f7ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Main Menu</h1>
+  <div class="menu">
+    <div class="card">
+      <h2>Project Python 🐍</h2>
+      <button class="start-button" onclick="location.href='project_python.html'">Start</button>
+    </div>
+    <div class="card">
+      <h2>Project SQL 📊</h2>
+      <button class="start-button" onclick="location.href='project_sql.html'">Start</button>
+    </div>
+  </div>
+</body>
+</html>

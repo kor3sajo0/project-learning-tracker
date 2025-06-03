@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Third Floor - Project SQL</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      padding: 1.5rem 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .floor-box {
+      background-color: #2a2a2a;
+      padding: 1.5rem;
+      margin: 1rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      text-align: left;
+    }
+    .floor-box h2 {
+      color: #00ffcc;
+    }
+    a {
+      color: #66d9ef;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .progress-container {
+      background-color: #444;
+      border-radius: 20px;
+      width: 100%;
+      height: 20px;
+      margin-top: 1rem;
+    }
+    .progress-bar {
+      background-color: #facc15;
+      height: 100%;
+      border-radius: 20px;
+      width: 0%;
+      transition: width 0.5s;
+    }
+    button {
+      margin-top: 0.5rem;
+      background-color: #00ffcc;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: #000;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00ddaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Third Floor</h1>
+
+  <div class="floor-box">
+    <h2>🟨 Medium Challenges</h2>
+    <label><input type="checkbox" id="dl_med"> 
+      <a href="https://datalemur.com/questions?difficulty=Medium&category=SQL" target="_blank">DataLemur Medium SQL</a>
+    </label><br>
+    <label><input type="checkbox" id="ss_med"> 
+      <a href="https://platform.stratascratch.com/coding?difficulty=Medium" target="_blank">StrataScratch Medium SQL</a>
+    </label>
+    <button onclick="markThirdComplete()">Mark Complete</button>
+    <div class="progress-container">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+  </div>
+
+  <div class="floor-box">
+    <p><a href="second_floor.html">⬅️ Back to Second Floor</a></p>
+    <p id="nextLink"></p>
+  </div>
+
+  <script>
+    const dlMed = document.getElementById("dl_med");
+    const ssMed = document.getElementById("ss_med");
+    const progressBar = document.getElementById("progress-bar");
+    const nextLink = document.getElementById("nextLink");
+
+    window.onload = function () {
+      dlMed.checked = localStorage.getItem("dl_med") === "true";
+      ssMed.checked = localStorage.getItem("ss_med") === "true";
+      updateProgressBar();
+    };
+
+    dlMed.addEventListener("change", () => {
+      localStorage.setItem("dl_med", dlMed.checked);
+      updateProgressBar();
+    });
+
+    ssMed.addEventListener("change", () => {
+      localStorage.setItem("ss_med", ssMed.checked);
+      updateProgressBar();
+    });
+
+    function markThirdComplete() {
+      dlMed.checked = true;
+      ssMed.checked = true;
+      localStorage.setItem("dl_med", true);
+      localStorage.setItem("ss_med", true);
+      updateProgressBar();
+    }
+
+    function updateProgressBar() {
+      const completed = [dlMed.checked, ssMed.checked].filter(Boolean).length;
+      const total = 2;
+      const percent = (completed / total) * 100;
+      progressBar.style.width = `${percent}%`;
+
+      if (percent === 100) {
+        nextLink.innerHTML = '<a href="fourth_floor.html">✅ Go to Fourth Floor</a>';
+      } else {
+        nextLink.innerText = "Complete all tasks to proceed.";
+      }
+    }
+  </script>
+</body>
+</html>

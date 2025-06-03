@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project SQL</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      padding: 1.5rem 2rem;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .floor-box {
+      background-color: #2a2a2a;
+      padding: 1.5rem;
+      margin: 1rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      text-align: left;
+    }
+    .floor-box h2 {
+      color: #00ffcc;
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #66d9ef;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .progress-container {
+      background-color: #444;
+      border-radius: 20px;
+      width: 100%;
+      height: 20px;
+      margin-top: 1rem;
+    }
+    .progress-bar {
+      background-color: #facc15;
+      height: 100%;
+      border-radius: 20px;
+      width: 0%;
+      transition: width 0.5s;
+    }
+    button {
+      margin-top: 0.5rem;
+      background-color: #00ffcc;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: #000;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00ddaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Project SQL</h1>
+  <p><a href="main_menu.html">⬅️ Back to Main Menu</a></p>
+
+  <div class="floor-box">
+    <h2>📘 Tutorial</h2>
+    <label><input type="checkbox" id="tutorial_task"> 
+      <a href="https://www.udemy.com/course/15-days-of-sql/learn/lecture/43057524?start=0#overview" target="_blank">15 Days of SQL (Udemy)</a>
+    </label>
+    <p>Use this course to learn the fundamentals of SQL before or while working through challenges.</p>
+  </div>
+
+  <div class="floor-box">
+    <h2>🚀 First Floor – LeetCode SQL</h2>
+    <label><input type="checkbox" id="leetcode_task"> 
+      <a href="https://leetcode.com/studyplan/top-sql-50/" target="_blank">LeetCode Top SQL 50</a>
+    </label>
+    <button onclick="markFirstComplete()">Mark Complete</button>
+    <div class="progress-container">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+  </div>
+
+  <div class="floor-box" id="continueBox" style="display: none;">
+    <h2>➡️ Continue</h2>
+    <p><a href="second_floor.html">Proceed to Second Floor</a></p>
+  </div>
+
+  <script>
+    const tutorial = document.getElementById("tutorial_task");
+    const checkbox = document.getElementById("leetcode_task");
+    const progressBar = document.getElementById("progress-bar");
+    const continueBox = document.getElementById("continueBox");
+
+    window.onload = function () {
+      tutorial.checked = localStorage.getItem("tutorial_task") === "true";
+      checkbox.checked = localStorage.getItem("leetcode_task") === "true";
+      updateProgressBar();
+    };
+
+    tutorial.addEventListener("change", () => {
+      localStorage.setItem("tutorial_task", tutorial.checked);
+      updateProgressBar();
+    });
+
+    checkbox.addEventListener("change", () => {
+      localStorage.setItem("leetcode_task", checkbox.checked);
+      updateProgressBar();
+    });
+
+    function markFirstComplete() {
+      checkbox.checked = true;
+      localStorage.setItem("leetcode_task", true);
+      updateProgressBar();
+    }
+
+    function updateProgressBar() {
+      const complete = checkbox.checked;
+      progressBar.style.width = complete ? "100%" : "0%";
+      const canContinue = complete && tutorial.checked;
+      continueBox.style.display = canContinue ? "block" : "none";
+    }
+  </script>
+</body>
+</html>
